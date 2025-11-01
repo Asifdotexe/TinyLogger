@@ -64,9 +64,7 @@ def _serialize_log_entry(entry: Dict[str, Any]) -> str:
         # This happens if the user's function returned something
         #   that isn't JSON-friendly (like a model object or a DataFrame).
         # We re-raise this as our own custom error so the decorator can catch it and handle it gracefully.
-        raise LoggerNonSerializableError(
-            f"{LoggerNonSerializableError.DEFAULT_MESSAGE} Original error: {e}"
-        ) from e
+        raise LoggerNonSerializableError(e) from e
 
 
 def log_run(log_file: str = DEFAULT_LOG_FILE) -> Callable[..., Any]:
