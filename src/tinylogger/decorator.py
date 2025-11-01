@@ -19,12 +19,12 @@ def _get_func_args(
     """
     Figures out the names and values of all arguments passed to a function.
 
-    We need to capture the name of the arguements (e.g., max_depth) and not just their values (e.g., 5).
+    We need to capture the name of the arguments (e.g., max_depth) and not just their values (e.g., 5).
     This function handles the logic of binding *args and **kwargs to the function signature.
 
     :param func: The function called.
     :param args: The positional arguments passed to the function.
-    :param kwargs: The keyword arguements passed to the function.
+    :param kwargs: The keyword arguments passed to the function.
     :return: A dictionary of parameter names mapped to their values.
     """
     try:
