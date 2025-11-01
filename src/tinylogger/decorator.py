@@ -2,9 +2,10 @@
 The core decorator logic
 """
 
-import json
 import inspect
-from typing import Callable, Any, Dict
+import json
+from typing import Any, Callable, Dict
+
 from .exceptions import LoggerNonSerializableError
 
 
@@ -33,3 +34,27 @@ def _get_func_args(
         # Fallback for complex callables where binding might fail.
         # this is less informative but safer than crashing.
         return {"args": args, "kwargs": kwargs}
+
+
+def _serialize_log_entry(entry: Dict[str, Any]) -> str:
+    """
+    Converts a log entry dictionary into a JSONL-formatted string
+
+    JSON-Lines (.jsonl) format requires each log entry to be a single, valid JSON object, followed by a newline.
+    This function enforces that.
+
+    :param entry: The dictionary containing log data.
+    :return: A JSON string ending with a newline.
+    """
+    try:
+        # NOTE: default=str is a safe fallback for common non-serializable types like datetime objects,
+        # converting them to their string form.
+        json_string = json.dumps(entry, default=str)
+        return json_string + "\n"
+    except TypeError as e:
+        # We catch the specific `TypeError` from json.dumps and re-raise it as our custom, more informative exception.
+        raise LoggerNonSerializableError(
+            f"Failed to serialize log entry. "
+            f"Ensure all arguments and return values are JSON-serializable. "
+            f"Original error: {e}"
+        ) from e
