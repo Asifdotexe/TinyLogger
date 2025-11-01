@@ -24,7 +24,7 @@ Wrap your function with the @log_run decorator.
 ```python
 from tinylogger import log_run
 
-@log_run(log_file="model_runs.jsonl")
+@log_run(log_file="experiment_log.jsonl")
 def train_model(max_depth, n_estimators):
     # ... your training logic ...
     f1_score = 0.83 # Your metric
@@ -42,9 +42,6 @@ This will create a `experiment_log.jsonl` file with one line per experiment:
 {"timestamp": "2025-11-01T16:32:12...", "runtime_seconds": 14.1, "params": {"max_depth": 7, "n_estimators": 100}, "metrics": {"f1": 0.81}}
 {"timestamp": "2025-11-01T16:34:45...", "runtime_seconds": 23.5, "params": {"max_depth": 5, "n_estimators": 200}, "metrics": {"f1": 0.83}}
 ```
-
-### Analyzing Your Results
-You can easily load your results back into pandas to find your best run:
 
 ### ⚠️ Important Limitations
 
