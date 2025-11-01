@@ -1,0 +1,27 @@
+[project]
+name = "tinylogger"
+version = "1.0.0"
+description = "A lightweight, zero-setup decorator for logging ML experiments to a JSONL file."
+authors = [
+    {name = "Asif Sayyed",email = "asifdotexe@gmail.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+]
+
+[tool.poetry]
+packages = [{include = "tinylogger", from = "src"}]
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.2"
+pandas = "^2.3.3"
+pylint = "^4.0.2"
+black = "^25.9.0"
+isort = "^7.0.0"
+pre-commit = "^4.3.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
