@@ -138,7 +138,7 @@ def log_run(log_file: str = DEFAULT_LOG_FILE) -> Callable[..., Any]:
 
             except Exception as e:
                 # A "catch-all" for any other unexpected logging error.
-                # This ensures *nothing* in the logging block can crash.
+                # This ensures nothing in the logging block can crash.
                 warnings.warn(
                     f"[TinyLogger Warning] An unexpected error occurred "
                     f"during logging: {e}",
