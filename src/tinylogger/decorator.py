@@ -65,9 +65,7 @@ def _serialize_log_entry(entry: Dict[str, Any]) -> str:
         #   that isn't JSON-friendly (like a model object or a DataFrame).
         # We re-raise this as our own custom error so the decorator can catch it and handle it gracefully.
         raise LoggerNonSerializableError(
-            f"Failed to serialize log entry. "
-            f"Your function's arguments or return value (metrics) may contain objects that are not JSON-serializable. "
-            f"Original error: {e}"
+            f"{LoggerNonSerializableError.DEFAULT_MESSAGE} Original error: {e}"
         ) from e
 
 

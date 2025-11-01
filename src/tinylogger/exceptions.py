@@ -18,8 +18,11 @@ class LoggerNonSerializableError(TypeError, LoggerError):
     This helps distinguish between a user's `TypeError` and one that
     occurs specifically during the logging process.
     """
-
-    pass
+    
+    DEFAULT_MESSAGE = (
+        "Failed to serialize log entry. "
+        "Ensure all arguments and return values are JSON-serializable."
+    )
 
 
 class LoggerWriteError(IOError, LoggerError):
