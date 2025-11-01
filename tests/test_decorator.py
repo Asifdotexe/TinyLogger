@@ -9,7 +9,7 @@ from unittest.mock import mock_open, patch
 import pandas as pd
 import pytest
 
-from tinylogger.decorator import log_run
+from tinylogger import log_run
 
 
 @pytest.fixture(name="clean_log_file")
