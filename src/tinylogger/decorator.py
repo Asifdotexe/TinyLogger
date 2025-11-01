@@ -37,7 +37,13 @@ def _get_func_args(
     except Exception:
         # Fallback for complex callables where binding might fail.
         # this is less informative but safer than crashing.
-        return {"args": args, "kwargs": kwargs}
+        warnings.warn(
+            f"[TinyLogger Warning] Could not inspect function "
+            f"signature for '{func.__name__}'. "
+            f"Logging raw positional and keyword args.",
+            stacklevel=3
+        )
+        return {"_args": args, "_kwargs": kwargs}
 
 
 def _serialize_log_entry(entry: Dict[str, Any]) -> str:
@@ -59,10 +65,10 @@ def _serialize_log_entry(entry: Dict[str, Any]) -> str:
         # We catch the specific `TypeError` from json.dumps and re-raise it as our custom, more informative exception.
         raise LoggerNonSerializableError(
             f"Failed to serialize log entry. "
-            f"Ensure all arguments and return values are JSON-serializable. "
+            f"Your function's arguments or return value (metrics) "
+            f"may contain objects that are not JSON-serializable. "
             f"Original error: {e}"
         ) from e
-
 
 def log_run(log_file: str = DEFAULT_LOG_FILE) -> Callable[..., Any]:
     """
