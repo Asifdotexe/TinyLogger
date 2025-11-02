@@ -1,6 +1,6 @@
 [project]
 name = "littlelogger"
-version = "1.0.0"
+version = "1.0.1"
 description = "A lightweight, zero-setup decorator for logging ML experiments to a JSONL file."
 authors = [
     {name = "Asif Sayyed",email = "asifdotexe@gmail.com"}
