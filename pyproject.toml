@@ -1,5 +1,5 @@
 [project]
-name = "tinylogger"
+name = "littlelogger"
 version = "1.0.0"
 description = "A lightweight, zero-setup decorator for logging ML experiments to a JSONL file."
 authors = [
@@ -12,7 +12,7 @@ dependencies = [
 ]
 
 [tool.poetry]
-packages = [{include = "tinylogger", from = "src"}]
+packages = [{include = "littlelogger", from = "src"}]
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.4.2"
