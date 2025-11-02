@@ -5,6 +5,30 @@ A lightweight, zero-setup decorator for logging ML experiments to a JSONL file.
 
 This tool is for the solo data scientist, student, or hobbyist in a Jupyter Notebook who just wants to keep track of their experiments without setting up a database or heavy framework.
 
+### Quick Setup
+Get started in 30 seconds.
+
+**1. Install from PyPI:**
+```bash
+pip install littlelogger
+```
+**2. Import and use the decorator:**
+```python
+from littlelogger import log_run
+
+@log_run(log_file="my_experiments.jsonl")
+def train_model(learning_rate, n_estimators):
+    # Your training logic...
+    f1 = 0.85
+    return {"f1_score": f1}
+
+# Just run your function as normal
+train_model(0.1, 100)
+train_model(0.05, 200)
+```
+**3. Check your results:**
+A `my_experiments.jsonl` file will be created, logging every run.
+
 ### See it in Action
 
 Want to see how it works? Check out the [Demo Notebook](demo/demo.ipynb) to see a real-world example of logging experiments from different models into one file.
