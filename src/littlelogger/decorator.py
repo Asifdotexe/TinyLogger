@@ -38,7 +38,7 @@ def _get_func_args(
         # This 'try...except' is a safety net. Some special functions (like ones built-in to C) can't be inspected.
         # If that happens, we don't want to crash. We just log the arguments in a "raw" format.
         warnings.warn(
-            f"[TinyLogger Warning] Could not figure out argument names for "
+            f"[LittleLogger Warning] Could not figure out argument names for "
             f"'{func.__name__}'. Logging them as raw '_args' and '_kwargs'.",
             stacklevel=3,
         )
@@ -145,7 +145,7 @@ def log_run(log_file: str = DEFAULT_LOG_FILE) -> Callable[..., Any]:
                 # 'stacklevel=2' tells the warning to point to the
                 # line in the user's code that called this function,
                 # which is much more helpful for debugging.
-                warnings.warn(f"[TinyLogger Warning] {e}", stacklevel=2)
+                warnings.warn(f"[LittleLogger Warning] {e}", stacklevel=2)
 
             return result
 

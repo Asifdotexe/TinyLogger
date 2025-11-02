@@ -1,5 +1,5 @@
 """
-Tests for the tinylogger package.
+Tests for the littlelogger package.
 """
 
 import json
@@ -9,7 +9,7 @@ from unittest.mock import mock_open, patch
 import pandas as pd
 import pytest
 
-from tinylogger import log_run
+from littlelogger import log_run
 
 
 @pytest.fixture(name="clean_log_file")

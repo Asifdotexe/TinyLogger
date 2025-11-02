@@ -1,11 +1,11 @@
 """
-Custom Exception for TinyLogger package
+Custom Exception for LittleLogger package
 """
 
 
 class LoggerError(Exception):
     """
-    Base exception for all the TinyLogger errors
+    Base exception for all the LittleLogger errors
     """
 
     pass
