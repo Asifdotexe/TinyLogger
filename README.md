@@ -1,5 +1,5 @@
 <div align="center">
-<img src="./demo/artifacts/tinylogger-logo.png" alt="TinyLogger Logo">
+<img src="./demo/artifacts/littlelogger-logo.png" alt="LittleLogger Logo">
 </div>
 A lightweight, zero-setup decorator for logging ML experiments to a JSONL file.
 
@@ -22,7 +22,7 @@ A day later, you've lost track of your best run.
 ### The Solution
 Wrap your function with the @log_run decorator.
 ```python
-from tinylogger import log_run
+from littlelogger import log_run
 
 @log_run(log_file="experiment_log.jsonl")
 def train_model(max_depth, n_estimators):
@@ -92,7 +92,7 @@ This tool is built for simplicity and has intentional trade-offs:
 
 1. Not Thread-Safe: This logger is NOT designed for concurrency. If you run functions in parallel (using `multiprocessing` or `threading` from the same script), they will try to write to the log file at the same time, which will corrupt the file. It is for single-process, iterative experiments only.
 2. JSON-Serializable Data Only: The decorator assumes your function arguments and return values are "JSON-serializable" (strings, ints, floats, lists, dicts). If you return a complex object (like a scikit-learn model), the logger will fail to serialize it.
-3. Best-Effort Logging (No Retries): If logging fails (due to a non-serializable object or a file permission error), `tinylogger` will not crash your script. It will print a `UserWarning` to your console and let your function return its value, prioritizing your main script's execution over logging.
+3. Best-Effort Logging (No Retries): If logging fails (due to a non-serializable object or a file permission error), `littlelogger` will not crash your script. It will print a `UserWarning` to your console and let your function return its value, prioritizing your main script's execution over logging.
 
 License & Contributing
 
