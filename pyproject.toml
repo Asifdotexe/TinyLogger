@@ -5,11 +5,34 @@ description = "A lightweight, zero-setup decorator for logging ML experiments to
 authors = [
     {name = "Asif Sayyed",email = "asifdotexe@gmail.com"}
 ]
-license = {text = "MIT"}
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
 readme = "README.md"
 requires-python = ">=3.13"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+
 dependencies = [
 ]
+
+[project.urls]
+Homepage = "https://github.com/Asifdotexe/LittleLogger"
+Issues = "https://github.com/Asifdotexe/LittleLogger/issues"
 
 [tool.poetry]
 packages = [{include = "littlelogger", from = "src"}]
