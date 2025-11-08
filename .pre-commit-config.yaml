@@ -1,5 +1,5 @@
-# How to run on all files: poetry run precommit run --all-files
-# How to run on specific file: poetry run precommit run --files <path>
+# How to run on all files: poetry run pre-commit run --all-files
+# How to run on specific file: poetry run pre-commit run --files <path>
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
