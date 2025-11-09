@@ -15,7 +15,7 @@ os.close(temp_file_descriptor)
 
 def fast_function():
     """
-    A non-decorated functiom
+    A non-decorated function
     """
     pass
 
@@ -69,7 +69,7 @@ print(
 print(
     f"\n With @log_run: {time_fast_decorated / NUM_OF_RUNS * 1_000_000:,.2f} microseconds per run"
 )
-print(f"\n Overhead: +{per_run_overhead_fast_ms: .2f} millisecond per run")
+print(f"\n Overhead: +{per_run_overhead_fast_ms:.2f} milliseconds per run")
 print(f"\n This is a {percentage_slowdown_fast:,.0f}% slowdown.")
 
 print("\n Slow Function (e.g., 'time.sleep(10ms)'")
@@ -79,7 +79,7 @@ print(
 print(
     f"\n With @log_run: {time_slow_decorated / NUM_OF_RUNS * 1_000_000:,.2f} microseconds per run"
 )
-print(f"\n Overhead: +{per_run_overhead_slow_ms: .2f} millisecond per run")
+print(f"\n Overhead: +{per_run_overhead_slow_ms:.2f} milliseconds per run")
 print(f"\n This is a {percentage_slowdown_slow:,.1f}% slowdown.")
 
 # Clean up the log file
