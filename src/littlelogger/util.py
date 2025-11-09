@@ -2,8 +2,8 @@
 This module will house all the utility functions that would be used along with littlelogger
 """
 
-from typing import Union
 from pathlib import Path
+from typing import Union
 
 import pandas as pd
 
