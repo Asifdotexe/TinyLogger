@@ -21,6 +21,7 @@ from littlelogger import log_run
 @log_run(log_file="my_experiments.jsonl")
 def train_model(learning_rate, n_estimators):
     # Your training logic...
+    f1 = 0.80
     return {"f1_score": f1}
 
 # Just run your function as normal
@@ -76,7 +77,7 @@ from littlelogger import load_log
 log_df = load_log(PATH_TO_LOG_FILE)
 
 # Find your best run!
-log_df.sort_values(by="metric_f1", ascending=False)
+log_df.sort_values(by="metric_f1_score", ascending=False)
 ```
 
 ### API Reference
