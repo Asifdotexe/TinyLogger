@@ -16,10 +16,11 @@ pip install littlelogger
 ```python
 from littlelogger import log_run
 
+# NOTE: for this to work, we need the training function to input the parameters that need to be logged
+# and output the performance metric e.g., f1_score, accuracy_score, etc.
 @log_run(log_file="my_experiments.jsonl")
 def train_model(learning_rate, n_estimators):
     # Your training logic...
-    f1 = 0.85
     return {"f1_score": f1}
 
 # Just run your function as normal
@@ -68,27 +69,14 @@ This will create a `experiment_log.jsonl` file with one line per experiment:
 ```
 
 ### Analyzing Your Results
-You can easily load your results back into pandas to find your best run. The key is using `pd.read_json()` with `lines=True`.
+You can easily load your results back into pandas to find your best run. The key is using `load_log()` from littlelogger
 ```python
-import pandas as pd
+from littlelogger import load_log
 
-Load the raw log file
-df = pd.read_json("model_runs.jsonl", lines=True)
-
-# The 'params' and 'metrics' columns will be dictionaries.
-# You can "flatten" them to make analysis easy:
-df_params = pd.json_normalize(df['params']).add_prefix('param_')
-df_metrics = pd.json_normalize(df['metrics']).add_prefix('metric_')
-
-# Join everything into a clean, flat table
-df_analysis = pd.concat([
-    df.drop(['params', 'metrics'], axis=1),
-    df_params,
-    df_metrics
-], axis=1)
+log_df = load_log(PATH_TO_LOG_FILE)
 
 # Find your best run!
-df_analysis.sort_values(by="metric_f1", ascending=False)
+log_df.sort_values(by="metric_f1", ascending=False)
 ```
 
 ### API Reference
