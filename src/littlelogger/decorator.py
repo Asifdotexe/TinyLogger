@@ -2,6 +2,7 @@
 The core decorator logic
 """
 
+import os
 import functools
 import inspect
 import json
@@ -56,7 +57,6 @@ def _serialize_log_entry(entry: Dict[str, Any]) -> str:
     :return: A JSON string ending with a newline.
     """
     try:
-        # Convert the dictionary to a JSON string.
         json_string = json.dumps(entry)
         return json_string + "\n"
     except TypeError as e:
@@ -97,19 +97,15 @@ def log_run(log_file: str = DEFAULT_LOG_FILE) -> Callable[..., Any]:
             """
             start_time = time.perf_counter()
 
-            # We do this before running the function, just in case the function itself fails.
             func_args = _get_func_args(func, *args, **kwargs)
 
             try:
-                # Run the user's original function
                 result = func(*args, **kwargs)
             finally:
-                # A 'finally' block always runs, even if the function in the 'try' block crashed.
-                # This guarantees we always log how long it took.
                 end_time = time.perf_counter()
                 runtime = end_time - start_time
 
-            # Put all the log information into a dictionary
+
             log_entry = {
                 "timestamp": time.strftime(TIMESTAMP_FORMAT, time.gmtime()),
                 "function_name": func.__name__,
@@ -121,14 +117,13 @@ def log_run(log_file: str = DEFAULT_LOG_FILE) -> Callable[..., Any]:
             # try to write this log to the file. This whole section is wrapped in a 'try...except'
             # so that if logging fails, it won't crash the user's script.
             try:
-                # Convert the dictionary to a JSON string
                 json_string = _serialize_log_entry(log_entry)
+                pid = os.getpid()
+                pid_log_file = f"{log_file}.{pid}"
 
                 try:
                     with open(
-                        # 'a' means "append" (add to the end of the file).
-                        # 'utf-8' is a standard text format.
-                        log_file,
+                        pid_log_file,
                         "a",
                         encoding="utf-8",
                     ) as f:
